@@ -3,9 +3,11 @@ Configurações para PDV
 
 Faça download do pacote necessário e siga as instruções:
 
+"
 wget -c https://github.com/elppans/pdv/raw/master/cfgbluesoft.tgz
 wget -c https://github.com/elppans/pdv/raw/master/cfglo.tgz
 wget -c https://github.com/elppans/pdv/raw/master/cfgsaas.tgz
+"
 
 tar -zxf cfg*.tgz
 
