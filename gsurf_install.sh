@@ -24,6 +24,6 @@ ps ax | grep sitef
 telnet 127.0.0.1 4096
 
 if ! grep 'serverSSL' /etc/rc.local ; then
-sed '/startup/i /gsurf/serverSSL -s sitef &' /etc/rc.local
+sed -i '/startup/i /gsurf/serverSSL -s sitef &' /etc/rc.local
 fi
 
