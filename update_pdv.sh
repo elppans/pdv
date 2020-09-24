@@ -47,3 +47,4 @@ cd "$DCTSAT"
 wget -c "$LCTSAT"
 unlink lnx_ctsat.xz &>> /dev/null
 ln -sf "$CTSAT" lnx_ctsat.xz
+chmod +x lnx_ctsat.xz
