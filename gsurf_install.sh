@@ -21,7 +21,8 @@ ldconfig
 ./instalador
 ./serverSSL -s sitef &
 ps ax | grep sitef
-telnet 127.0.0.1 4096
+#telnet 127.0.0.1 4096
+netstat -anp | grep 4096 | grep -i listen ; lsof -i | grep 4096 ; nc -z -v 127.0.0.1 4096 | grep "succeeded"
 
 if ! grep 'serverSSL' /etc/rc.local ; then
 sed -i '/startup/i /gsurf/serverSSL -s sitef &' /etc/rc.local
