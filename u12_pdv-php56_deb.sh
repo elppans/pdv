@@ -2,6 +2,7 @@
 
 MODULOPHPPDV=moduloPHPPDV_2_14_124_117d-19275_php_5_6.zip
 
+
 if ! ping -c 1 ftp.zanthus.com.br ; then
         echo -e "ftp zanthus nao comunica..."
 	exit 0
