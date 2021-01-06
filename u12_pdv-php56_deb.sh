@@ -1,12 +1,11 @@
 #!/bin/bash
 
+MODULOPHPPDV=moduloPHPPDV_2_14_124_117d-19275_php_5_6.zip
+
 if ! ping -c 1 ftp.zanthus.com.br ; then
         echo -e "ftp zanthus nao comunica..."
 	exit 0
 fi
-
-#MODULOPHPPDV=moduloPHPPDV_2_14_132_123-c-20281_php_5_6.zip
-MODULOPHPPDV=moduloPHPPDV_2_14_124_117d-19275_php_5_6.zip
 
 php --version | head -1 | grep 'PHP 5.4' && \
 {
