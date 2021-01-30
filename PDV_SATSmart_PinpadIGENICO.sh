@@ -4,18 +4,18 @@ mkdir -p /var/elgin
 echo -e '[DEFAULT]\nSERIAL="/dev/ttyACM0"\n' > /var/elgin/sat.ini
 cd /lib/udev/hwdb.d
 mkdir -p ~/hwdb.lib
-mv 20-usb-classes.hwdb  20-usb-vendor-model.hwdb ~/hwdb.lib
+mv -v 20-usb-classes.hwdb  20-usb-vendor-model.hwdb ~/hwdb.lib
 cd /lib/udev/rules.d
 mkdir -p ~/rules.lib
-mv 40-usb_modeswitch.rules 60-serial.rules 77-mm-usb-serial-adapters-greylist.rules ~/rules.lib
+mv -v 40-usb_modeswitch.rules 60-serial.rules 77-mm-usb-serial-adapters-greylist.rules ~/rules.lib
 mkdir -p ~/rules.bkp
 cd /etc/udev/
-mv * ~/rules.bkp
+mv -v * ~/rules.bkp
 mkdir -p rules.d
 cd rules.d
 touch 99-pdv.rules
 
-cat <<EOF >99-pdv.rules:
+cat <<EOF > 99-pdv.rules
 
 ##      PERMISSOES
 
@@ -45,6 +45,7 @@ ACTION=="remove", ATTRS{idVendor}=="2fe7", SYMLINK-="ttySAT"
 #SUBSYSTEMS=="usb", ATTRS{idVendor}=="0a86", ATTRS{idProduct}=="0100", MODE="0777"
 EOF
 
+readlink -m 99-pdv.rules
 
 # Porta no CliSiTef.ini:
 
@@ -56,6 +57,5 @@ cat /Zanthus/Zeus/ctsat/ZANSAT.CFG
 
 #MODELO_SAT=ELGIN2
 #CODIGO_ATIVACAO=123456789
-
 
 
