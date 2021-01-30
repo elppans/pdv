@@ -47,6 +47,8 @@ EOF
 
 readlink -m 99-pdv.rules
 
+systemctl restart systemd-udev-trigger.service systemd-udevd.service
+
 # Porta no CliSiTef.ini:
 
 # Porta=/dev/ttyPIN
@@ -58,4 +60,5 @@ cat /Zanthus/Zeus/ctsat/ZANSAT.CFG
 #MODELO_SAT=ELGIN2
 #CODIGO_ATIVACAO=123456789
 
+#udevadm info --query=all --name=/dev/ttyACM0 | grep -E 'ID_VENDOR_ID|SUBSYSTEM|ID_MODEL_ID|DEVNAME'
 
