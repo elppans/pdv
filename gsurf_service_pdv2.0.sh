@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cat <<'EOF' > /etc/systemd/system/gsurf.service
 [Unit]
 Description=gsurf
