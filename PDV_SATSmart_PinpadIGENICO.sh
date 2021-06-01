@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Atualização biblioteca ELGIN2, remoção da biblioteca conflitante
+cd /Zanthus/Zeus/ctsat && \
+wget -c ftp://ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/SAT/so/ELGIN2/libdllsat.so_04.01.02.008 && \
+rm -rf libdllsat.so && mv libdllsat.so_04.01.02.008 libdllsat.so && rm -rf libsatprotocol.so && rm -rf /Zanthus/Zeus/lib/libsatprotocol.so && \
+ldconfig 2> /tmp/simbolic && rm -rf $(cat /tmp/simbolic | cut -f '2' -d ':' | cut -f '2' -d ' ') && rm -rf /tmp/simbolic && ldconfig
+# Atualização biblioteca ELGIN2, remoção da biblioteca conflitante
+
 mkdir -p /var/elgin
 echo -e '[DEFAULT]\nSERIAL="/dev/ttyACM0"\n' > /var/elgin/sat.ini
 cd /lib/udev/hwdb.d
