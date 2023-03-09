@@ -1,0 +1,61 @@
+rem ************************************************************************
+rem *****        CONFIGURACAO TECLADO SKO-44 COM CONECTOR PS/2         *****
+rem *****                     PADRAO LOPES                             *****
+rem ************************************************************************
+
+# visor_op=5
+
+tecla:27=2
+tecla:103=70
+tecla:104=105
+_tecla_shift
+
+tecla:55=25
+tecla:52=26
+tecla:49=27
+tecla:48=28
+
+tecla:56=35
+tecla:53=36
+tecla:50=37
+tecla:45=38
+
+tecla:57=45
+tecla:54=46
+tecla:51=47
+tecla:46=48
+
+tecla:8=5
+tecla:231=1 #231=6
+tecla:32=56
+tecla:13=58
+
+tecla:93=11  #93=0
+tecla:59=1
+tecla:42=21
+tecla:106=77 #106=8
+
+tecla:97=63 #97=11
+tecla:102=20
+tecla:110=255 #110=30
+tecla:116=40
+
+tecla:98=85 #98=62
+tecla:105=65 #105=66
+tecla:111=68
+tecla:117=92 #117=82
+
+tecla:99=62 #99=72
+tecla:107=95 #107=76
+tecla:112=82 #112=78
+tecla:118=91 #118=86
+
+tecla:100=81 #100=90
+tecla:108=88 #108=92
+tecla:114=102 #114=96
+tecla:121=94 #121=98
+
+tecla:101=100
+tecla:109=93 #109=102
+tecla:115=106
+tecla:122=108
