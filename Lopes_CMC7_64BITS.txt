@@ -1,0 +1,55 @@
+#   Static hostname: PDV80
+#         Icon name: computer-desktop
+#           Chassis: desktop
+#        Machine ID: 7ab952bbdc6443a9bea8f1d070844440
+#           Boot ID: 07d44f68269c4de4b24675d74af11424
+#  Operating System: Zeus PDV InstaladorPDV-2.U1604.415.1.5-64
+#            Kernel: Linux 4.15.0-72-generic
+#      Architecture: x86-64
+# Intel(R) Celeron(R) CPU  J1800  @ 2.41GHz
+# Mem:           3822
+# Disk /dev/sda: 111,8 GiB
+# ZMAN[CZ] 1.X.148.578 (09.Out.2022)
+# MODULOPHP_VERSAO.XML 2.14.148.133.b
+# PHP 5.6.40
+####################################################
+
+sudo apt-get update
+sudo apt-get install libncurses5-dev libncursesw5-dev libxml2-dev libcurl4-openssl-dev libssl-dev
+sudo apt-get install librabbitmq4
+wget -c http://security.ubuntu.com/ubuntu/pool/main//libu/libusb-1.0/libusb-1.0-0-dev_1.0.20-1_amd64.deb
+wget -c http://archive.ubuntu.com/ubuntu/pool/universe/libr/librabbitmq/librabbitmq-dev_0.7.1-1ubuntu0.2_amd64.deb
+sudo dpkg -i libusb-1.0-0-dev_1.0.20-1_amd64.deb
+sudo dpkg -i librabbitmq-dev_0.7.1-1ubuntu0.2_amd64.deb
+sudo apt-get -f install
+
+
+wget -c ftp://pdvtec:$SENHA@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/so_u64/* -P /Zanthus/Zeus/lib_u64 && ldconfig
+
+#ls /Zanthus/Zeus/lib_u64/lib3perifpdv* -all
+#ls /Zanthus/Zeus/lib_u64/libsk* -all
+#ls /Zanthus/Zeus/pdvJava/libsk* -all
+
+#-rwxr-xr-x 1 root root 85456 Out 23  2019 lib3perifpdv.so.1.6.17.u64
+#lrwxrwxrwx 1 root root    26 Out 27 13:47 lib3perifpdv.so.u64 -> lib3perifpdv.so.1.6.17.u64
+
+wget -c ftp://pdvtec:$SENHA@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/Terceiros/Teclados/Smak/Bibliotecas/Linux/Versao_1_99_9b/x64/libsk_access.so.64 -P /Zanthus/Zeus/lib_u64 && ldconfig
+cp -rfv /Zanthus/Zeus/lib_u64/libsk_access.so* /Zanthus/Zeus/pdvJava && ldconfig
+
+ldconfig 2> /tmp/simbolic && rm -rf $(cat /tmp/simbolic | cut -f '2' -d ':' | cut -f '2' -d ' ') && rm -rf /tmp/simbolic && ldconfig
+
+#cd /Zanthus/Zeus/pdvJava
+#wget -c ftp://pdvtec:$SENHA@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/v_1_X_X/ZMAN_1_X_X_570_CZ.EXL
+#mv ZMAN_1_X_X_570_CZ.EXL VerAtu.tar.gz
+#tar -zxvf VerAtu.tar.gz
+#cp -v VerAtu.tar.gz /Zanthus
+#wget -c ftp://pdvtec:$SENHA@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/v_1_X_X/ZMAN_1_X_X_571_CZ.EXL && tar -zxvf ZMAN_1_X_X_571_CZ.EXL
+
+#cd /Zanthus/Zeus/pdvJava/pdvGUI
+#wget -c ftp://pdvtec:$SENHA@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/Java/java/jpdvgui6_7_7_15_11.jar
+#ln -sf jpdvgui6_7_7_15_11.jar jpdvgui6.jar
+#chmod +x *.jar
+
+#dpkg -l libncurses*5* libxml2-dev libcurl4-openssl-dev libssl-dev librabbitmq4 librabbitmq-dev libusb-1.0-0-dev
+
+
