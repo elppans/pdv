@@ -1,53 +1,18 @@
-#root@1001PDV07:~# hostname
-#1001PDV07
-#root@1001PDV07:~# cat /etc/network/interfaces
-#auto lo eth0
-#iface lo inet loopback
-#iface eth0 inet static
-#address 10.1.0.47
-#netmask 255.255.0.0
-#gateway 10.1.1.146
-#dns-nameservers 10.1.7.64 10.1.7.65
-#root@1001PDV07:~#
+#!/bin/bash
 
-#CPU: Sweda SP-03
-#ISO: InstaladorPDV-2.U1604.415.1.3-32.iso
-#Sisrtema: Zeus PDV 2.0.rc22098-32bit
-#Arquitetura: 32 bits
-#Scanner DEVE ser USB e configurado como tipo 3, porta 13
+SENHA=04rFXom1
 
-#Nesta versão, funciona apenas função direto.
+# Atualização das bibliotecas:
 
-####################################################
+wget -c ftp://pdvtec:$SENHA@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/so/* -P /Zanthus/Zeus/lib
+wget -c ftp://pdvtec:$SENHA@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/so_ubu/* -P /Zanthus/Zeus/lib_ubu
+wget -c ftp://pdvtec:$SENHA@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/so_co5/* -P /Zanthus/Zeus/lib_co5
+ldconfig
 
-sudo apt-get update
-sudo apt-get install libncurses5-dev libncursesw5-dev
-sudo apt install libxml2-dev
-sudo apt install libcurl4-openssl-dev
-sudo apt-get install libssl-dev
-wget -c http://archive.ubuntu.com/ubuntu/pool/universe/libr/librabbitmq/librabbitmq-dev_0.7.1-1_i386.deb
-sudo dpkg -i librabbitmq-dev_0.7.1-1_i386.deb
-sudo apt-get -f install
-wget -c http://security.ubuntu.com/ubuntu/pool/main//libu/libusb-1.0/libusb-1.0-0-dev_1.0.20-1_i386.deb
-sudo dpkg -i libusb-1.0-0-dev_1.0.20-1_i386.deb
+# Download do libsk:
+
+wget -c ftp://pdvtec:$SENHA@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/Terceiros/Teclados/Smak/Bibliotecas/Linux/Versao_2_21/x86/libsk_access.so -P /Zanthus/Zeus/lib
+ln -sf /Zanthus/Zeus/lib/libsk_access.so /Zanthus/Zeus/pdvJava/libsk_access.so
 
 ldconfig 2> /tmp/simbolic && rm -rf $(cat /tmp/simbolic | cut -f '2' -d ':' | cut -f '2' -d ' ') && rm -rf /tmp/simbolic && ldconfig
 
-wget -c ftp://pdvtec:04rFXom1@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/so/* -P /Zanthus/Zeus/lib
-wget -c ftp://pdvtec:04rFXom1@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/so_ubu/* -P /Zanthus/Zeus/lib_ubu
-wget -c ftp://pdvtec:04rFXom1@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/so_co5/* -P /Zanthus/Zeus/lib_co5
-ldconfig
-
-#ls /Zanthus/Zeus/lib/lib3perifpdv* -all
-#-rwxr-xr-x 1 root root 85456 Out 23  2019 lib3perifpdv.so.1.6.17.u64
-#lrwxrwxrwx 1 root root    26 Out 27 13:47 lib3perifpdv.so.u64 -> lib3perifpdv.so.1.6.17.u64
-
-wget -c ftp://pdvtec:04rFXom1@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/Terceiros/Teclados/Smak/Bibliotecas/Linux/Versao_1_99_9b/x86/libsk_access.so* -P /Zanthus/Zeus/lib
-ln -sf /Zanthus/Zeus/lib/libsk_access.so /Zanthus/Zeus/pdvJava/libsk_access.so
-ldconfig
-
-#cd /Zanthus/Zeus/pdvJava && \
-#wget -c ftp://pdvtec:04rFXom1@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/v_1_X_X/ZMAN_1_X_X_570_CZ.EXL && \
-#mv ZMAN_1_X_X_570_CZ.EXL VerAtu.tar.gz && \
-#tar -zxvf VerAtu.tar.gz && \
-#cp -v VerAtu.tar.gz /Zanthus
