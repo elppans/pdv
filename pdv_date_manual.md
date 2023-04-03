@@ -1,5 +1,6 @@
 # Configurar horário MANUAL no PDV.  
 
+> ### **Todos os comandos devem ser feito como Admin/root**
 1) Desativar UTC e NTP conf  
 
 ```
