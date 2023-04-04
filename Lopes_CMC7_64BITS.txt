@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SENHA=04rFXom1
+SENHA=SUASENHA
 
 # Atualização das bibliotecas:
 
