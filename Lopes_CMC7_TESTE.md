@@ -1,9 +1,9 @@
 
-[TOC]
+# OLD
 
 #### E-MAIL
 
-Configuração do PDV feita seguindo **MINUCIOSAMENTE** o e-mail enviado por "**Antonio Carlos** [mailto:antonio.carlos@zanthus.com.br]", título "**cmc7 USB - Homologação**".
+Configuração do PDV feita seguindo **MINUCIOSAMENTE** o e-mail enviado por "**Antonio Carlos** [mailto:a***@zanthus.com.br]", título "**cmc7 USB - Homologação**".
 
 #### Sistema
 
