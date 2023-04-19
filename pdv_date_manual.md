@@ -43,6 +43,19 @@ date -s "$(expr $(date +%H) + 1)":"$(date +%M)":"$(date +%S)" && hwclock -w
 ```
 pkill -9 [Jj]av && pkill -9 lnx
 ```
+# Voltar horário AUTOMÁTICO no PDV.
+
+```
+sudo sed -i 's/UTC=no/UTC=yes/' /etc/default/rcS && \
+sudo sed -i 's/NTPDATE_USE_NTP_CONF=no/NTPDATE_USE_NTP_CONF=yes/' /etc/default/ntpdate && \
+ln -sf /usr/share/zoneinfo/America/Recife /etc/localtime && \
+echo -e 'America/Recife' | tee /etc/timezone >> /dev/null ; dpkg-reconfigure -f noninteractive tzdata ; hwclock -w && \
+timedatectl set-local-rtc 1 && \
+timedatectl set-ntp 1 && \
+timedatectl set-timezone  "America/Recife" && \
+ntpdate a.ntp.br && \
+hwclock -w
+```
 
 #### Fontes:  
 [Sync Timezone Ubuntu/Windows](https://www.edivaldobrito.com.br/como-corrigir-diferencas-de-tempo-entre-o-ubuntu-e-o-windows-em-sistema-com-dual-boot/)  
