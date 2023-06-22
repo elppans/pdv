@@ -3,15 +3,15 @@
 #### Atualização bibliotecas PDV 64 bits
 
 ```bash
-wget -c ftp://pdvtec:SENHA@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/so_u64/* -P /Zanthus/Zeus/lib_u64
+wget -c ftp://pdvtec:$SENHA@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/so_u64/* -P /Zanthus/Zeus/lib_u64
 ldconfig
 ```
 #### Atualização bibliotecas PDV 32 bits
 
 ```bash
-wget -c ftp://pdvtec:04rFXom1@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/so/* -P /Zanthus/Zeus/lib
-wget -c ftp://pdvtec:04rFXom1@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/so_ubu/* -P /Zanthus/Zeus/lib_ubu
-wget -c ftp://pdvtec:04rFXom1@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/so_co5/* -P /Zanthus/Zeus/lib_co5
+wget -c ftp://pdvtec:$SENHA@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/so/* -P /Zanthus/Zeus/lib
+wget -c ftp://pdvtec:$SENHA@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/so_ubu/* -P /Zanthus/Zeus/lib_ubu
+wget -c ftp://pdvtec:$SENHA@ftp.zanthus.com.br:2142/pub/Zeus_Frente_de_Loja/_Complementares/so_co5/* -P /Zanthus/Zeus/lib_co5
 ldconfig
 ```
 
