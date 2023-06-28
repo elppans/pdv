@@ -1,0 +1,15 @@
+#!/bin/bash
+xrandr --output VGA-1 --mode 1024x768 --pos 0x0 --output HDMI-1 --mode 1366x768  --pos 1024x0
+
+#echo -e "Iniciando Chama Fila...\n\n"
+#sleep 15
+#chromium-browser --no-sandbox --autoplay-policy=no-user-gesture-required --enable-speech-synthesis --kiosk http://127.0.0.1:9090/moduloPHPPDV/painel.php --window-position=1024,0 &
+
+echo -e "Iniciando PDV...\n\n"
+sleep 15
+xterm -e  /Zanthus/Zeus/pdvJava/pdvJava2 --window-position=0,0 &
+
+
+echo "vou pra read"
+read
+

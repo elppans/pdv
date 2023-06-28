@@ -1,0 +1,291 @@
+#!/bin/bash
+# pdvJava2 - Execucao/Atualizacao Automatica do ZEUS - Frente de Loja Linux - PDV
+# www.zanthus.com.br
+
+sync && echo 3 >/proc/sys/vm/drop_caches
+# Atualizando as variaveis de ambiente
+source /etc/environment
+source /opt/webadmin/extra/path_comum_sinc/path_comum_sinc.conf
+source /Zanthus/Zeus/pdvJava/ATULIB_0.TXT
+
+ESCDELAY=1
+export ESCDELAY
+PATH_COMUM_SINC_STATUS=$(systemctl is-enabled path_comum_sinc)
+if [ "$PATH_COMUM_SINC_STATUS" == 'disabled' ]; then
+	$Z_MOUNT
+fi
+# Desativando a repeticao (eco) de teclas
+xset r off
+sysZanAtualApl=/Zanthus/Zeus/path_comum
+echo -e "\nScript para Execucao/Atualizacao do ZEUS - Frente de Loja Linux - versao 2.1"
+echo -e "                   (C)2011 Zanthus S/A Comercio e Servicos.\n"
+
+# Dando Permissao na pasta /Zanthus para o root
+cd /Zanthus
+chown root:root -R *
+chmod 755 -R *
+
+#TODO:Verificar melhor forma
+if [ "$CONF_UPDATE_MODE" == 'PathComum' ]; then
+	# Atualizacao das bibliotecas do Zeus - Frente de Loja - PDV Zanthus
+	if [ -d $sysZanAtualApl/especial ]; then
+		cd $sysZanAtualApl/especial
+		cp -f * /Zanthus/Zeus/especial/
+		echo -e "[Atualizacao das Bibliotecas (especial) realizada com sucesso!]\n"
+	else
+		rm -f /Zanthus/Zeus/especial/*
+		echo -e "[A atualizacao nao pode ser realizada. $sysZanAtualApl/especial nao existe!]\n"
+	fi
+	if [ -d $sysZanAtualApl/so_u64 ]; then
+		cd $sysZanAtualApl/so_u64
+		cp -f * /Zanthus/Zeus/lib_u64/
+		echo -e "[Atualizacao das Bibliotecas (so_r64) realizada com sucesso!]\n"
+	else
+		echo -e "[A atualizacao nao pode ser realizada. $sysZanAtualApl/so_r64 nao existe!]\n"
+	fi
+	# Atualizacao do ZEUS - Frente de Loja - PDV Zanthus
+	if [ -e $sysZanAtualApl/VerAtu.tar.gz ]; then
+		if [ -e /Zanthus/VerAtu.tar.gz ]; then
+			cd /Zanthus
+			rm -f cmp_error
+			cmp $sysZanAtualApl/VerAtu.tar.gz /Zanthus/VerAtu.tar.gz >>cmp_error
+
+			if [ -s cmp_error ]; then
+				echo -e "\n[Aguarde. Executando a atualizacao do ZEUS - Frente de Loja - PDV.]"
+
+				cd $sysZanAtualApl
+				cp -f $sysZanAtualApl/VerAtu.tar.gz /Zanthus/
+				cd /Zanthus
+				tar -xzvf VerAtu.tar.gz
+
+				# Passo 1: ZEUS - Frente de Loja versao PDV Java
+
+				#			cd /
+
+				#			rm -f -R /Zanthus/Zeus/old_pdvJava
+
+				#			mkdir -m777 /Zanthus/Zeus/old_pdvJava
+				#			cp -a -R /Zanthus/Zeus/pdvJava/* /Zanthus/Zeus/old_pdvJava/
+
+				cd /Zanthus/Zeus/pdvJava/
+				# rm -f *.1VN
+				# rm -f *.NVL
+				# rm -f *.TMP
+				# rm -f *.TRA
+				# rm -f *.ZX*
+				# rm -f *.ZZ*
+
+				# Passo 2: Atualizacao do ZEUS - Frente de Caixa
+
+				cd /Zanthus
+				cp -f * /Zanthus/Zeus/pdvJava/
+				#cp -f lnx_* /Zanthus/Zeus/pdvJava/
+				#cp -f ETIQ* /Zanthus/Zeus/pdvJava/
+
+				# Atualizacao e Configuracao ZEUS - Frente de Loja
+
+				#	cd /
+				#	cp -a /Zanthus/Zeus/old_pdvJava/*.CFG /Zanthus/Zeus/pdvJava/
+				#	cp -a /Zanthus/Zeus/old_pdvJava/*.INI /Zanthus/Zeus/pdvJava/
+				#	cp -a -R /Zanthus/Zeus/old_pdvJava/pdv* /Zanthus/Zeus/pdvJava/
+
+				cd /Zanthus/Zeus/pdvJava/
+				./lnx_senh -z2291755
+
+				echo -e "[Atualizacao do Zeus - Frente de Loja PDV realizada com sucesso!]\n"
+			fi
+		else
+			echo -e "\n[Aguarde. Executando a atualizacao do ZEUS - Frente de Loja - PDV.]"
+
+			cd $sysZanAtualApl
+			cp -f $sysZanAtualApl/VerAtu.tar.gz /Zanthus
+			cd /Zanthus
+			tar -xzvf VerAtu.tar.gz
+
+			# Passo 1: ZEUS - Frente de Loja versao PDV Java
+
+			#	cd /
+
+			#	rm -f -R /Zanthus/Zeus/old_pdvJava
+
+			#	mkdir -m777 /Zanthus/Zeus/old_pdvJava
+			#	cp -a -R /Zanthus/Zeus/pdvJava/* /Zanthus/Zeus/old_pdvJava/
+
+			cd /Zanthus/Zeus/pdvJava/
+			# rm -f *.1VN
+			# rm -f *.NVL
+			# rm -f *.TMP
+			# rm -f *.TRA
+			# rm -f *.ZX*
+			# rm -f *.ZZ*
+
+			# Passo 2: Atualizacao do ZEUS - Frente de Caixa
+
+			cd /Zanthus
+			cp -f * /Zanthus/Zeus/pdvJava/
+			#cp -f lnx_* /Zanthus/Zeus/pdvJava/
+			#cp -f ETIQ* /Zanthus/Zeus/pdvJava/
+
+			# Atualizacao e Configuracao ZEUS - Frente de Loja
+
+			#	cd /
+			#	cp -a /Zanthus/Zeus/old_pdvJava/*.CFG /Zanthus/Zeus/pdvJava/
+			#	cp -a /Zanthus/Zeus/old_pdvJava/*.INI /Zanthus/Zeus/pdvJava/
+			#	cp -a -R /Zanthus/Zeus/old_pdvJava/pdv* /Zanthus/Zeus/pdvJava/
+
+			cd /Zanthus/Zeus/pdvJava/
+			./lnx_senh -z2291755
+
+			cd /
+
+			echo -e "[Atualizacao do Zeus - Frente de Loja PDV realizada com sucesso!]\n"
+		fi
+	fi
+fi
+if [ "$CONF_UPDATE_MODE" == 'Manager' ]; then
+	if [ -n "$VERSAO" ] || [ -n "$PURO_ZTAR" ] || [ -n "$ZTAR" ]; then
+		cd /Zanthus/Zeus/pdvJava/
+		./zantarlb.xz ATULIB_0.TXT /Zanthus/Zeus/lib_inter |grep "Ja esta com versao atualizada"
+		if [ "$?" != "0" ];then
+			# Descompactando so_u64 e copiando para pasta Zanthus/Zeus/so_u64			
+			if [ -n "$(ls -A /Zanthus/Zeus/lib_inter)" ]; then
+				# Compactar Pasta so_u64 para backup
+				echo -e "[Backup das Bibliotecas (lib_u64) realizada com sucesso!]\n"
+				find /Zanthus/Zeus/lib_u64_* -type f -mtime +15 -exec rm -rf {} \;
+				cd /Zanthus/Zeus/				
+				tar -czf lib_u64_$(date +%Y-%m-%d_%H-%M-%S).tar.gz lib_u64
+				cd lib_u64
+				rm -rf *.*
+
+				cd /Zanthus/Zeus/lib_inter/
+				tar -xvf ExecLibs.tar.gz
+				cp -f * /Zanthus/Zeus/lib_u64/
+                                cd /Zanthus/Zeus/
+                                rm -rf /lib_inter/*
+			fi
+			echo -e "[Atualizacao das Bibliotecas via Manager (lib_u64) realizada com sucesso!]\n"
+		else
+			echo -e "[Nao existem atualizacoes de (lib_u64) a serem realizadas.!]\n"
+		fi
+	fi
+		
+fi
+#TODO: No Momento o Atualiza via Manager atualiza apenas o VerAtu e Libs então é preciso manter os demais componentes aqui..
+# Atualizacao dos arquivos de configuracao complementares do Zeus - Frente de Loja - PDV Zanthus
+if [ -d $sysZanAtualApl/ZArqConfig ]; then
+	cd $sysZanAtualApl/ZArqConfig
+	cp -f -R * /Zanthus/Zeus/pdvJava/
+	echo -e "[Atualizacao dos arquivos de configuracao complementares realizada com sucesso!]\n"
+else
+	echo -e "[Nao existem atualizacoes a serem realizadas. $sysZanAtualApl/ZArqConfig nao existe!]\n"
+fi
+
+# Atualizacao da aplicacao da Interface Grafica Java
+if [ -d $sysZanAtualApl/pdvConfig ]; then
+	cd $sysZanAtualApl/pdvConfig
+	cp -f -R * /Zanthus/Zeus/pdvJava/pdvConfig/
+else
+	echo -e "[$sysZanAtualApl/pdvConfig nao existe!]\n"
+fi
+if [ -d $sysZanAtualApl/pdvGUI ]; then
+	cd $sysZanAtualApl/pdvGUI
+	cp -f -R * /Zanthus/Zeus/pdvJava/pdvGUI/
+	echo -e "[Atualizacao da aplicacao da Interface Grafica Java realizada com sucesso!]\n"
+else
+	echo -e "[A atualizacao nao pode ser realizada. $sysZanAtualApl/pdvGUI nao existe!]\n"
+fi
+# Atualizando moduloPHPPDV
+echo -e "\n[Atualizando moduloPHPPDV, aguarde...]\n"
+if [ -d $sysZanAtualApl/moduloPHPPDV ]; then
+	cd /Zanthus/Zeus/pdvJava/GERAL/SINCRO/WEB/moduloPHPPDV/
+	rm -rf cmp_error
+	cmp $sysZanAtualApl/moduloPHPPDV/moduloPHPPDV.zip /Zanthus/Zeus/pdvJava/GERAL/SINCRO/WEB/moduloPHPPDV/moduloPHPPDV.zip >>cmp_error
+	if [ -s cmp_error ]; then
+		cd $sysZanAtualApl/moduloPHPPDV
+		rsync -ravzpt moduloPHPPDV.zip /Zanthus/Zeus/pdvJava/GERAL/SINCRO/WEB/moduloPHPPDV/
+		cd /Zanthus/Zeus/pdvJava/GERAL/SINCRO/WEB/moduloPHPPDV/
+		unzip -o moduloPHPPDV.zip
+		chmod -R 777 *
+		echo -e "[Atualizacao dos arquivos da pasta moduloPHPPDV realizada com sucesso!]\n"
+	else
+		echo -e "[Nao existem atualizacoes a serem realizadas.]\n"
+	fi
+else
+	echo -e "[Nao existem atualizacoes a serem realizadas. $sysZanAtualApl/moduloPHPPDV nao existe!]\n"
+fi
+# Atualizando Interface
+echo -e "[Atualizando arquivos de Interface do PDV, aguarde...]\n"
+if [ -d $sysZanAtualApl/Interface ]; then
+	cd /Zanthus/Zeus/Interface
+	rm -rf cmp_error
+	cmp $sysZanAtualApl/Interface/Interface.zip /Zanthus/Zeus/Interface/Interface.zip >>cmp_error
+	if [ -s cmp_error ]; then
+		cd $sysZanAtualApl/Interface
+		rsync -ravzpt Interface.zip /Zanthus/Zeus/Interface/
+		cd /Zanthus/Zeus/Interface/
+		unzip -o Interface.zip
+		chmod -R 777 *
+		echo -e "[Atualizacao dos arquivos da pasta Interface realizada com sucesso!]\n"
+	else
+		echo -e "[Nao existem atualizacoes a serem realizadas.]\n"
+	fi
+else
+	echo -e "[Nao existem atualizacoes a serem realizadas. $sysZanAtualApl/Interface nao existe!]\n"
+fi
+# Atualizando ctsat
+echo -e "[Atualizando arquivos de ctsat do PDV, aguarde...]\n"
+if [ -d $sysZanAtualApl/ctsat ]; then
+	cd $sysZanAtualApl/ctsat
+	rsync -ravzpt * /Zanthus/Zeus/ctsat/
+	chmod -R 777 /Zanthus/Zeus/ctsat/
+	echo -e "[Atualizacao dos arquivos da pasta ctsat realizada com sucesso!]\n"
+else
+	echo -e "[Nao existem atualizacoes a serem realizadas. $sysZanAtualApl/ctsat nao existe!]\n"
+fi
+# Fim TODO
+echo -e "[Executando ldconfig para atualizacao do path, aguarde...]\n"
+ldconfig
+echo -e "[Atualizacao das Bibliotecas realizada com sucesso!]\n"
+# Disparando o terminal de consulta.
+#echo -e "[Execucao do Terminal de consulta no PDV.]\n"
+#xterm -geometry 60x24+460+0 -e /Zanthus/Zeus/stc/Servidor.sh &
+
+# INCIANDO CTSAT
+echo -e "[INICIANDO SERVICO CTSAT]\n"
+cd /Zanthus/Zeus/ctsat/
+xterm -geometry 60x24+360+0 -e /usr/local/bin/Servidor_SAT.sh &
+
+#echo -e "[Execucao do ZEUS - Frente de Loja - PDV Zanthus]\n"
+nohup igraficaJava &
+#sleep 5
+# Controle de envio do PDVJava para o segundo monitor
+# Testado com interface Java 7.7.4
+#nohup dualmonitor_control-PDVJava &
+
+#x11vnc
+xterm -geometry 60x24+360+0 -e /Zanthus/Zeus/pdvJava/PDVX11vnc.sh &
+
+cd /Zanthus/Zeus/pdvJava
+export LANG=pt_BR.ISO8859-1
+$(pwd)/lnx_paf.xz64
+
+killall -9 chromium-browser
+
+echo -e "\n[Aguarde. Desmontando o path comum Zanthus.]"
+
+#if [ -n $Z_MOUNT ]
+#then
+#	umount /Zanthus/Zeus/path_comum
+#else
+#	echo -e "[O path comum Zanthus nao existe!]\n"
+#fi
+# Parar CT_SAT
+cd /Zanthus/Zeus/ctsat/
+if [ -e CTSAT_EM_EXECUCAO.TXT ] && [ -e CTSAT_LOCAL.XML ]; then
+	rm CTSAT_EM_EXECUCAO.TXT
+	rm CTSAT_LOCAL.XML
+fi
+# Garante que o path comum desmontou.
+#umount /Zanthus/Zeus/path_comum
+xset r on
+#init 0

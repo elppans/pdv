@@ -1,0 +1,12 @@
+#! /bin/bash
+xrandr --output DP-1 --mode 800x600 --right-of eDP-1 --output eDP-1 --mode 1024x576 --left-of DP-1
+xinput map-to-output 12 eDP-1 &
+xinput map-to-output 11 DP-1 &
+chmod +x /usr/local/bin/igraficaJava
+chmod +x /usr/local/bin/dualmonitor_control-PDVJava
+nohup dualmonitor_control-PDVJava &
+nohup igraficaJava &
+nohup recreate-user-rabbitmq.sh &
+/Zanthus/Zeus/pdvJava/pdvJava2 &
+nohup chromium-browser --diable-pinch --disable-gpu --test-type --no-sandbox --kiosk --no-context-menu --disable-translate file:////Zanthus/Zeus/Interface/index.html
+

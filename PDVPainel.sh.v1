@@ -1,0 +1,14 @@
+#! /bin/bash
+xrandr --output VGA1 --mode 800x600 --pos 0x0 --output HDMI1 --mode 1920x1080i  --pos 800x0
+sleep 10
+
+nohup /Zanthus/Zeus/pdvJava/pdvJava2 &
+
+sleep 10
+nohup chromium-browser --no-sandbox --autoplay-policy=no-user-gesture-required --enable-speech-synthesis --kiosk http://127.0.0.1:9090/moduloPHPPDV/painel.php --window-position=800,0 &
+
+pkill -9 [Vv][Nn][Cc]
+nohup /usr/local/bin/noVNC &
+
+echo "vou pra read"
+read

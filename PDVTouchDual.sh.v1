@@ -1,0 +1,14 @@
+#!/bin/bash
+
+xrandr --output VGA-1 --mode 1024x768 --pos 0x0 --output HDMI-1 --mode 800x600  --pos 1024x0
+
+sleep 5
+/usr/bin/unclutter 1> /dev/null &
+chmod +x /usr/local/bin/igraficaJava
+chmod +x /usr/local/bin/dualmonitor_control-PDVJava
+nohup dualmonitor_control-PDVJava &
+nohup igraficaJava &
+nohup recreate-user-rabbitmq.sh &
+xterm -e  /Zanthus/Zeus/pdvJava/pdvJava2 --window-position=1024,0 &
+nohup chromium-browser --disable-pinch --disable-gpu --test-type --no-sandbox --incognito --kiosk --no-context-menu --disable-translate file:////Zanthus/Zeus/Interface/index.html  --window-position=0,0 &
+
