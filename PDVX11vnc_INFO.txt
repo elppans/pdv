@@ -1,3 +1,5 @@
+#  USAR O ARQUIVO 'X11vnc.sh'
+
 Para usar o arquivo PDVX11vnc.sh, deve copiar o arquivo para a pasta pdvJava, dar permissão de execução e adicionar este parâmetro no pdvJava2, antes da execução do lnx_paf:
 
 #x11vnc
