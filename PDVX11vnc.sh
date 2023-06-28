@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#  USAR O ARQUIVO 'X11vnc.sh'
 
 for i in `seq 60 -1 1` ; do echo -ne "$i Seg.\r" ; sleep 1 ; done
 
