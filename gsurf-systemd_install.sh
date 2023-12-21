@@ -76,7 +76,7 @@ Type=simple
 User=root
 Restart=always
 RestartSec=1
-ExecStart=/gsurf/serverSSL -s sitef &
+ExecStart=/gsurf/serverSSL -s sitef
 
 [Install]
 WantedBy=multi-user.target
