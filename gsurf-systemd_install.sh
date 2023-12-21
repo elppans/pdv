@@ -3,6 +3,12 @@
 # Recomendado PDV-2.U1604.415.1.4-* pra cima
 # Sistema 64 bits deve ser multilib
 
+# Verifica se o usuário é root
+if [ "$EUID" -ne 0 ]; then
+  echo "Este script deve ser executado como super usuário (root)."
+  exit 1
+fi
+
 # Verificar se os pacotes estão instalados
 if dpkg -s libc6:i386 libgcc1:i386 libstdc++6:i386 >/dev/null 2>&1; then
     echo "Todos os pacotes de dependências estão instalados."
@@ -11,11 +17,6 @@ else
     echo "Algumas dependências estão faltando. Instale os seguintes pacotes antes de prosseguir:"
     dpkg -s libc6:i386 libgcc1:i386 libstdc++6:i386 2>&1 | grep "is not installed"
     exit 1
-fi
-
-if [ -e /usr/gsurf/gsurfcli.txt ] ; then
-	echo "Gsurf ja esta instalado!"
-	exit 0
 fi
 
 # Função para verificar a conectividade externa
@@ -33,6 +34,12 @@ if [ $? -eq 0 ]; then
 else
     echo "Sem conectividade externa."
     exit 1
+fi
+
+# Configurando GSurf
+if [ -e /usr/gsurf/gsurfcli.txt ] ; then
+	echo "Gsurf ja esta instalado!"
+	exit 0
 fi
 
 mkdir -p /gsurf
