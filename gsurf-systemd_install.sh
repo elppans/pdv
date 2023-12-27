@@ -23,7 +23,8 @@ fi
 
 # Função para verificar a conectividade externa
 check_connectivity() {
-    ping -c 2 google.com > /dev/null 2>&1
+    #ping -c 2 google.com > /dev/null 2>&1
+    ping -c 2 m3.gsurfnet.com > /dev/null 2>&1
     return $?
 }
 
