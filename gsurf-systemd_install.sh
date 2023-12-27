@@ -12,6 +12,8 @@ fi
 # Verificar se os pacotes estão instalados
 if dpkg -s libc6:i386 libgcc1:i386 libstdc++6:i386 >/dev/null 2>&1; then
     echo "Todos os pacotes de dependências estão instalados."
+# Verificar se os pacotes estão instalados Ubuntu 22.04
+ elif dpkg -s libc6:i386 libgcc-s1:i386 libstdc++6:i386 >/dev/null 2>&1; then
 else
     # Caso algum pacote esteja faltando, exibir mensagem e sair
     echo "Algumas dependências estão faltando. Instale os seguintes pacotes antes de prosseguir:"
