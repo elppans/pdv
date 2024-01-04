@@ -4,7 +4,7 @@ Configurar **MULTILIB no PDV 2.X 64 bits**
 
 Sistema testado:
 
->Zeus PDV InstaladorPDV-2.U1604.415.1.4-64
+>Zeus PDV InstaladorPDV-2.U1604.415.1.4-64  
 Zeus PDV 2.0.rc21104-64bit-16.04-4.15.0-1385
 
 CODFON Testado na loja:
@@ -15,7 +15,7 @@ CODFON Testado na loja:
 
 Exemplos:
 
->URANO
+>URANO  
 TANCA
 
 2) Configuração Multilib para Impressoras que não possuem bibliotecas 64 bits no momento.
