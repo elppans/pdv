@@ -2,7 +2,7 @@
 
 cd /Zanthus/Zeus/pdvJava
 curl -JOLk https://github.com/elppans/pdv/raw/master/PDVTouchDual_sleep-gui.tar.gz && \
-tar -zxvf PDVTouchDual_sleep-gui.tar.gz && \
+tar -zxf PDVTouchDual_sleep-gui.tar.gz && \
 rm -rf PDVTouchDual_sleep-gui.tar.gz
 
 
