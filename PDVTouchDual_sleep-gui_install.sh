@@ -6,11 +6,12 @@ tar -zxvf PDVTouchDual_sleep-gui.tar.gz && \
 rm -rf PDVTouchDual_sleep-gui.tar.gz
 
 
-echo -e '#!/bin/bash
+echo '#!/bin/bash
 xterm -e /Zanthus/Zeus/pdvJava/PDVTouchDual.sh
 popup
 ' | tee /usr/local/bin/mainapp >> /dev/null
 
 chmod -v +x /usr/local/bin/mainapp /Zanthus/Zeus/pdvJava/{PDVTouchDual,sleep-gui,xinput-set}*
 
-echo -e "Leia o arquivo \"PDVTouch_Ubuntu.txt\" com instruções de configuração!"
+echo " "
+echo "Leia o arquivo \"PDVTouch_Ubuntu.txt\" com instruções de configuração!"
