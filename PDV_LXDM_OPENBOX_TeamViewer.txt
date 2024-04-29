@@ -2,6 +2,7 @@
 
 O Team Viewer EXIGE Interface gráfica E login via GUI.
 Então DEVE ser instalado o gerenciador de login no PDV, desabilitar o autologin via getty e habilitar autologin via GUI
+# Fonte: https://wiki.archlinux.org/title/LXDM
 
 01) Instalando e configurando login GUI do PDV (LXDM + OpenBOX)
 
@@ -9,15 +10,13 @@ sudo apt-get update
 sudo apt-get -y install lxdm
 sudo sed -i '/autologin/s/dgod/root/' /etc/lxdm/default.conf
 sudo sed -i '/autologin/s/#//' /etc/lxdm/default.conf
-sed -i 's/ExecStart=-/#ExecStart=-/' /etc/systemd/system/getty@tty1.service.d/override.conf
-sed -i 's/startlxde/openbox-session/' /etc/lxdm/Xsession
-sed -i 's/startlxde/openbox-session/' /etc/lxdm/lxdm.conf
-sed -i '/openbox-session/s/#/ /' /etc/lxdm/lxdm.conf
+sudo sed -i 's/ExecStart=-/#ExecStart=-/' /etc/systemd/system/getty@tty1.service.d/override.conf
+sudo sed -i 's/startlxde/openbox-session/' /etc/lxdm/Xsession
+sudo sed -i 's/startlxde/openbox-session/' /etc/lxdm/lxdm.conf
+sudo sed -i '/openbox-session/s/#/ /' /etc/lxdm/lxdm.conf
 
-mv /usr/bin/startlxde /usr/bin/startlxde.old
-ln -sf /usr/bin/openbox-session /usr/bin/startlxde
-
-#Fonte: https://wiki.archlinux.org/title/LXDM
+sudo mv /usr/bin/startlxde /usr/bin/startlxde.old
+sudo ln -sf /usr/bin/openbox-session /usr/bin/startlxde
 
 02) Instalando e configurando Team Viewer
 
@@ -26,6 +25,7 @@ sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com C5E224500C1289C0
 sudo apt-get update
 sudo apt-get install teamviewer
 dpkg -l teamviewer* | grep ^ii
+
 echo -e '[Desktop Entry]
 Version=1.0
 Encoding=UTF-8
@@ -38,5 +38,6 @@ Exec=teamviewer -r
 
 Icon=TeamViewer
 ' | tee ~/Desktop/TeamViewer.desktop
+
 chmod +x ~/Desktop/TeamViewer.desktop
 cp -v ~/Desktop/TeamViewer.desktop ~/.config/autostart
