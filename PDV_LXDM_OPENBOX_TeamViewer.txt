@@ -10,11 +10,13 @@ sudo apt-get -y install lxdm
 sudo sed -i '/autologin/s/dgod/root/' /etc/lxdm/default.conf
 sudo sed -i '/autologin/s/#//' /etc/lxdm/default.conf
 sed -i 's/ExecStart=-/#ExecStart=-/' /etc/systemd/system/getty@tty1.service.d/override.conf
-#mv /usr/bin/startlxde /usr/bin/startlxde.old
-#ln -sf /usr/bin/openbox-session /usr/bin/startlxde
 sed -i 's/startlxde/openbox-session/' /etc/lxdm/Xsession
 sed -i 's/startlxde/openbox-session/' /etc/lxdm/lxdm.conf
 sed -i '/openbox-session/s/#/ /' /etc/lxdm/lxdm.conf
+
+mv /usr/bin/startlxde /usr/bin/startlxde.old
+ln -sf /usr/bin/openbox-session /usr/bin/startlxde
+
 #Fonte: https://wiki.archlinux.org/title/LXDM
 
 02) Instalando e configurando Team Viewer
