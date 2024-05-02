@@ -9,7 +9,7 @@ pdvx11exec(){
 clear
 echo -e "\nExecutando X11VNC...\n\n"
 
-nohup x11vnc -nopw -noshm -noxdamage -forever -env FD_XDM=1 -cursor arrow -shared -rfbport 5900 -display :0 -auth /var/run/lightdm/root/:0 &>> /de$
+nohup x11vnc -nopw -noshm -noxdamage -forever -env FD_XDM=1 -cursor arrow -shared -rfbport 5900 -display :0 -auth /var/run/lightdm/root/:0 &>> /dev/null
 
 #clear
 #echo -e "\nReexecutando X11VNC...\n\n"
